@@ -110,6 +110,13 @@ mod tests {
         mtrie.delete("key2bbb".as_bytes());
 
         assert_eq!(trie.database, mtrie.database);
+
+        for (key, value) in &map {
+            mtrie.delete(key);
+        }
+
+        assert!(mtrie.database.len() == 0);
+        assert!(mtrie.root == empty_trie_hash!());
     }
 
     #[test]

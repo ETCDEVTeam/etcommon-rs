@@ -16,4 +16,3 @@ sha3 = "0.6"
 
 [dev-dependencies]
 etcommon-hexutil = "0.2"
-etcommon-trie-test = "0.3"

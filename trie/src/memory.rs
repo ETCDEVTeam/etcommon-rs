@@ -91,12 +91,10 @@ mod tests {
     use merkle::MerkleNode;
     use rlp::Rlp;
 
-    use trie_test::{DatabaseGuard, Trie};
     use std::collections::HashMap;
     use std::str::FromStr;
     use std::cell::UnsafeCell;
     use bigint::H256;
-    use hexutil::read_hex;
 
     #[test]
     fn trie_middle_leaf() {
@@ -110,15 +108,8 @@ mod tests {
 
         let mut btrie = MemoryTrieMut::build(&map);
 
-        let mut database: HashMap<H256, Vec<u8>> = HashMap::new();
-        let mut trie: Trie<HashMap<H256, Vec<u8>>> = Trie::build(database, &map);
-
-        assert_eq!(trie.database, btrie.database);
-
-        assert_eq!(trie.root(), H256::from_str("0xcb65032e2f76c48b82b5c24b3db8f670ce73982869d38cd39a624f23d62a9e89").unwrap());
-        assert_eq!(trie.get_raw("key2bb".as_bytes()), Some("aval3".as_bytes().into()));
+        assert_eq!(btrie.root(), H256::from_str("0xcb65032e2f76c48b82b5c24b3db8f670ce73982869d38cd39a624f23d62a9e89").unwrap());
         assert_eq!(btrie.get("key2bb".as_bytes()), Some("aval3".as_bytes().into()));
-        assert_eq!(trie.get_raw("key2bbb".as_bytes()), None);
         assert_eq!(btrie.get("key2bbb".as_bytes()), None);
 
         let mut mtrie = MemoryTrieMut::default();
@@ -126,12 +117,12 @@ mod tests {
             mtrie.insert(key, value);
         }
 
-        assert_eq!(trie.database, mtrie.database);
+        assert_eq!(btrie.database, mtrie.database);
 
         mtrie.insert("key2bbb".as_bytes(), "aval4".as_bytes());
         mtrie.delete("key2bbb".as_bytes());
 
-        assert_eq!(trie.database, mtrie.database);
+        assert_eq!(btrie.database, mtrie.database);
 
         for (key, value) in &map {
             mtrie.delete(key);

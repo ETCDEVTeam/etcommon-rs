@@ -2,7 +2,6 @@ extern crate bigint;
 extern crate rlp;
 extern crate sha3;
 #[cfg(test)] extern crate hexutil;
-#[cfg(test)] extern crate trie_test;
 
 use bigint::H256;
 use rlp::Rlp;
@@ -37,10 +36,12 @@ macro_rules! empty_trie_hash {
 pub mod merkle;
 mod ops;
 mod memory;
+mod mutable;
 
 use ops::{insert, delete, build, get};
 
-pub use memory::SingletonMemoryTrieMut;
+pub use memory::*;
+pub use mutable::*;
 
 pub trait DatabaseHandle {
     fn get<'a>(&'a self, key: H256) -> &'a [u8];

@@ -13,4 +13,5 @@ name = "trie_rocksdb"
 [dependencies]
 etcommon-trie = { version = "0.4", path = ".." }
 etcommon-bigint = { version = "0.2", path = "../../bigint" }
+etcommon-trie-memory = { version = "0.4", path = "../memory" }
 rocksdb = { git = "https://github.com/paritytech/rust-rocksdb" }

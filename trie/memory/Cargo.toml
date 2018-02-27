@@ -1,0 +1,20 @@
+[package]
+name = "etcommon-trie-memory"
+version = "0.4.0"
+license = "Apache-2.0"
+authors = ["Wei Tang <hi@that.world>"]
+description = "Rocksdb adaptor for trie."
+repository = "https://github.com/ethereumproject/etcommon-rs"
+keywords = ["ethereum"]
+
+[lib]
+name = "trie_memory"
+
+[dependencies]
+etcommon-trie = { version = "0.4", path = ".." }
+etcommon-bigint = { version = "0.2", path = "../../bigint" }
+etcommon-rlp = { version = "0.2", path = "../../rlp" }
+sha3 = "0.6"
+
+[dev-dependencies]
+etcommon-hexutil = { version = "0.2", path = "../../hexutil" }

@@ -3,7 +3,6 @@ extern crate rlp;
 extern crate bloom;
 extern crate secp256k1;
 extern crate sha3;
-extern crate blockchain;
 extern crate trie;
 extern crate block_core;
 #[cfg(test)] extern crate hexutil;

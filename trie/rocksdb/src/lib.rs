@@ -1,6 +1,6 @@
 extern crate trie;
 extern crate bigint;
-extern crate rocksdb;
+extern crate parity_rocksdb as rocksdb;
 
 use bigint::H256;
 use trie::{CachedDatabaseHandle, CachedHandle, Change, DatabaseHandle, TrieMut, get, insert, delete};

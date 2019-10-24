@@ -1,10 +1,8 @@
 use rlp::{self, Encodable, Decodable, RlpStream, DecoderError, UntrustedRlp};
-use bigint::{Address, Gas, H256, U256, B256, H64, H2048};
-use bloom::LogsBloom;
+use bigint::{H256, U256};
 use trie::FixedMemoryTrieMut;
 use sha3::{Keccak256, Digest};
-use std::collections::HashMap;
-use super::{Header, Transaction, Receipt, SignaturePatch};
+use super::{Header, Transaction, Receipt};
 
 pub fn transactions_root(transactions: &[Transaction]) -> H256 {
     let mut trie = FixedMemoryTrieMut::default();
@@ -70,13 +68,11 @@ impl Decodable for Block {
 
 #[cfg(test)]
 mod tests {
-    use rlp::{encode, decode, Rlp};
+    use rlp::{encode, decode};
     use hexutil::read_hex;
     use bigint::{U256, H256, Address, Gas};
-    use bloom::LogsBloom;
     use block::Block;
     use TransactionAction;
-    use transaction::GlobalSignaturePatch;
     use std::str::FromStr;
 
     #[test]

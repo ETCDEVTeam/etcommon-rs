@@ -1,5 +1,5 @@
 use rlp::{Encodable, Decodable, RlpStream, DecoderError, UntrustedRlp};
-use bigint::{Address, Gas, H256, U256, B256, H64};
+use bigint::{Address, H256};
 
 #[cfg(not(feature = "std"))]
 use alloc::vec::Vec;

@@ -41,7 +41,7 @@ pub fn test_genesis_root() {
     let genesis_accounts: HashMap<String, JSONAccount> =
         serde_json::from_str(include_str!("../res/genesis.json")).unwrap();
 
-    let mut accounts: Vec<(&String, &JSONAccount)> = genesis_accounts.iter().collect();
+    let accounts: Vec<(&String, &JSONAccount)> = genesis_accounts.iter().collect();
     let mut account_trie: FixedSecureMemoryTrieMut<Address, Account> = Default::default();
     let mut account_db: HashMap<Address, Account> = HashMap::new();
     let mut addresses: Vec<Address> = Vec::new();

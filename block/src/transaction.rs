@@ -1,15 +1,14 @@
 #[cfg(feature = "c-secp256k1")]
 use secp256k1::{Message, Error, RecoverableSignature, RecoveryId, SECP256K1};
 #[cfg(feature = "c-secp256k1")]
-use secp256k1::key::{PublicKey, SecretKey};
+use secp256k1::key::SecretKey;
 #[cfg(feature = "rust-secp256k1")]
 use secp256k1::{self, Message, Error, Signature, RecoveryId, SecretKey, PublicKey};
 
 use rlp::{self, Encodable, Decodable, RlpStream, DecoderError, UntrustedRlp};
-use bigint::{Address, Gas, H256, U256, B256, M256};
+use bigint::{Address, Gas, H256, U256};
 use sha3::{Digest, Keccak256};
 use address::FromKey;
-use std::marker::PhantomData;
 use std::str::FromStr;
 use super::{TransactionAction, RlpHash};
 
@@ -46,8 +45,6 @@ pub struct HomesteadValidationPatch;
 impl ValidationPatch for HomesteadValidationPatch {
     fn require_low_s() -> bool { true }
 }
-
-const ECDSA_SIGNATURE_BYTES: usize = 65;
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct TransactionSignature {
@@ -303,14 +300,12 @@ impl RlpHash for Transaction {
 
 #[cfg(test)]
 mod tests {
-    use secp256k1::{Message, Error, RecoverableSignature, RecoveryId, SECP256K1};
-    use secp256k1::key::{PublicKey, SecretKey};
-    use rlp::{self, Encodable, Decodable, RlpStream, DecoderError, UntrustedRlp};
-    use bigint::{Address, Gas, H256, U256, B256};
-    use sha3::{Digest, Keccak256};
+    use secp256k1::SECP256K1;
+    use secp256k1::key::SecretKey;
+    use bigint::{Address, Gas, U256};
     use address::FromKey;
     use rand::os::OsRng;
-    use super::{Transaction, UnsignedTransaction, TransactionAction, ClassicSignaturePatch,
+    use super::{UnsignedTransaction, TransactionAction, ClassicSignaturePatch,
                 HomesteadValidationPatch};
 
     #[test]

@@ -4,7 +4,6 @@ use sha3::{Digest, Keccak256};
 
 #[cfg(not(feature = "std"))] use alloc::vec::Vec;
 #[cfg(not(feature = "std"))] use alloc::rc::Rc;
-#[cfg(feature = "std")] use std::rc::Rc;
 
 // Use transaction action so we can keep most of the common fields
 // without creating a large enum.
@@ -84,7 +83,7 @@ mod tests {
 
     #[test]
     fn rlp_roundtrip_call() {
-        let address = Address::from(M256::from(0xDEADBEEFDEADBEEFDEADBEEF_u64));
+        let address = Address::from(M256::from(std::u64::MAX));
         let action = TransactionAction::Call(address);
         let encoded = rlp::encode(&action);
         let decoded: TransactionAction = rlp::decode(&encoded);
@@ -101,7 +100,7 @@ mod tests {
 
     #[test]
     fn rlp_roundtrip_create2() {
-        let salt = H256::from(M256::from(0xDEADBEEF));
+        let salt = H256::from(M256::from(std::i32::MAX));
         let code_hash = M256::from(1024);
         let action = TransactionAction::Create2(salt, code_hash);
         let encoded = rlp::encode(&action);

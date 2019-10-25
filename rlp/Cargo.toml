@@ -12,7 +12,7 @@ name = "rlp"
 
 [dependencies]
 elastic-array-plus = { version = "0.10.0", default-features = false }
-lazy_static = { version = "0.2", optional = true }
+lazy_static = { version = "1.4", optional = true }
 byteorder = { version = "1.0", default-features = false }
 etcommon-hexutil = { version = "0.2", path = "../hexutil", default-features = false }
 

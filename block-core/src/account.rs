@@ -1,5 +1,5 @@
 use rlp::{Encodable, Decodable, RlpStream, DecoderError, UntrustedRlp};
-use bigint::{Address, Gas, H256, U256, B256};
+use bigint::{H256, U256};
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Account {
